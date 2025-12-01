@@ -51,7 +51,6 @@ function EditProfile() {
             return;
         }
 
-        localStorage.setItem("PhoneNo", MobileNo);
         localStorage.setItem("FirstName", FirstName);
         localStorage.setItem("LastName", LastName);
         localStorage.setItem("Vehicle", Vehicle);

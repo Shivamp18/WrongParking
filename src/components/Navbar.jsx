@@ -16,15 +16,28 @@ export default function Navbar() {
         <Link to="/" className="font-bold text-white cursor-pointer" style={{ fontSize: '1.8rem' }}>
           Wrong Parking
         </Link>
-        {profileMatch||editProfileMatch ?
+        {profileMatch || editProfileMatch ?
           <>
             <ul className="hidden md:flex space-x-8 text-white font-medium items-center" style={{ fontSize: '17px' }}>
               <li><Link to="/" className="hover:text-gray-300 cursor-pointer">Home</Link></li>
               <li>
-                <img
-                  src={profileimage}
-                  className="rounded-full w-10 h-10 border-3 border-white shadow-md"
-                /></li>
+                <div className="relative group">
+                  <img
+                    src={profileimage}
+                    className="rounded-full w-10 h-10 border-3 border-white shadow-md cursor-pointer"
+                  />
+
+                  <div className="absolute -right-13 mt-2 w-38 bg-gray-50 shadow-lg rounded-lg p-3 
+                  opacity-0 group-hover:opacity-100 invisible group-hover:visible 
+                  transition-all duration-200">
+                    <ul className="text-black">
+                      <li className="py-1 hover:bg-gray-200 px-2 rounded"><Link to="/profile">My Profile</Link></li>
+                      <li className="py-1 hover:bg-gray-200 px-2 rounded"><Link to="/edit-profile">Edit Profile</Link></li>
+                      <li className="py-1 hover:bg-gray-200 px-2 rounded"><Link to="/">Logout</Link></li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
             </ul></> :
           <ul className="hidden md:flex space-x-8 text-white font-medium" style={{ fontSize: '17px' }}>
             <li><Link to="/" className="hover:text-gray-300 cursor-pointer">Home</Link></li>
