@@ -7,13 +7,13 @@ function RegisterPage() {
     const [mobile, setMobile] = useState("+91");
     const [email, setEmail] = useState("");
     const [vehicle, setVehicle] = useState("");
-    const [FirstName, setFirstName] = useState("");
+    const [firstName, setfirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const navigate = useNavigate();
 
-    const registerUser = () => {
+    const registeruser = () => {
 
-        if (FirstName.trim() === "") {
+        if (firstName.trim() === "") {
             alert("First name can't be empty");
             return;
         }
@@ -35,7 +35,11 @@ function RegisterPage() {
             return;
         }
 
-        localStorage.setItem("user", mobile);
+        localStorage.setItem("PhoneNo", mobile);
+        localStorage.setItem("FirstName", firstName);
+        localStorage.setItem("LastName", lastName);
+        localStorage.setItem("Vehicle", vehicle);
+        localStorage.setItem("Email", email);
         alert("Registered Successfully!");
         navigate('/login');
     }
@@ -51,8 +55,8 @@ function RegisterPage() {
                         <input type="text"
                             placeholder='Enter your first name'
                             className='border border-gray-300 w-full p-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-100 focus:border-amber-900 focus:shadow-md'
-                            value={FirstName}
-                            onChange={(e) => { setFirstName(e.target.value) }}
+                            value={firstName}
+                            onChange={(e) => { setfirstName(e.target.value) }}
                         />
                     </div>
                     <div className='mb-3'>
@@ -93,7 +97,7 @@ function RegisterPage() {
                         />
                     </div>
 
-                    <button type='button' className='border w-full bg-blue-950 text-white py-3 text-lg font-bold rounded-lg mb-2 hover:bg-black cursor-pointer' onClick={registerUser}>Register</button>
+                    <button type='button' className='border w-full bg-blue-950 text-white py-3 text-lg font-bold rounded-lg mb-2 hover:bg-black cursor-pointer' onClick={registeruser}>Register</button>
                 </form>
 
                 <p className='mb-3'>Already registered?

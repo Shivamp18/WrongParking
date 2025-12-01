@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
 
@@ -8,10 +9,11 @@ function LoginPage() {
     const [generatedOtp, setGeneratedOtp] = useState("");
     const [step, setStep] = useState(1);
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     const handleSendOtp = () => {
 
-        const userMobile = localStorage.getItem("user");
+        const userMobile = localStorage.getItem("PhoneNo");
         if (userMobile !== mobile) {
             setError("Mobile number not registered");
             return;
@@ -31,14 +33,17 @@ function LoginPage() {
     };
 
     const handleVerify = () => {
+
         const storedOtp = localStorage.getItem("otp");
 
-        if (otp === storedOtp) {
+        if (otp === storedOtp && otp !== "") {
             alert("Login Successful!");
             setError("");
+            navigate('/profile');
         } else {
             setError("Incorrect OTP");
         }
+
     };
 
     return (
@@ -59,7 +64,7 @@ function LoginPage() {
                                 onChange={(e) => { setMobile(e.target.value) }}
                             />
                         </div>
-                        <button className='border w-full bg-blue-950 text-white py-3 text-lg font-bold rounded-lg mb-2 hover:bg-black cursor-pointer' onClick={handleSendOtp}>Login
+                        <button className='border w-full bg-blue-950 text-white py-3 text-lg font-bold rounded-lg mb-2 hover:bg-black cursor-pointer' onClick={handleSendOtp}>Get OTP
                         </button></> : null
                     }
 
