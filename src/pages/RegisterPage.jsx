@@ -45,8 +45,8 @@ function RegisterPage() {
     }
 
     return (
-        <div className='min-h-screen flex justify-center items-center'>
-            <div className='bg-white px-12 rounded-xl w-200 mt-33 mb-13 py-12'>
+        <div className='min-h-screen flex justify-center items-center px-5'>
+            <div className='bg-white px-12 rounded-xl mt-25 md:mt-33 mb-13 py-12 w-full sm:w-96 md:w-200'>
                 <h1 className='font-bold flex justify-center mb-8' style={{ fontSize: '32px' }}>Register</h1>
 
                 <form>
@@ -97,7 +97,7 @@ function RegisterPage() {
                         />
                     </div>
 
-                    <button type='button' className='border w-full bg-blue-950 text-white py-3 text-lg font-bold rounded-lg mb-2 hover:bg-black cursor-pointer' onClick={registeruser}>Register</button>
+                    <button type='button' className='border w-full bg-blue-950 text-white py-3 text-lg font-bold rounded-lg mb-3 hover:bg-black cursor-pointer' onClick={registeruser}>Register</button>
                 </form>
 
                 <p className='mb-3'>Already registered?

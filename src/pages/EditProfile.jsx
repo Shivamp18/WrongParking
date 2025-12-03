@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 
 function EditProfile() {
 
-    const FirstName = localStorage.getItem("FirstName");
-    const LastName = localStorage.getItem("LastName");
-    const Email = localStorage.getItem("Email");
-    const Vehicle = localStorage.getItem("Vehicle");
+    const [FirstName, setFirstName] = useState(localStorage.getItem("FirstName") || "");
+    const [LastName, setLastName] = useState(localStorage.getItem("LastName") || "");
+    const [Email, setEmail] = useState(localStorage.getItem("Email") || "");
+    const [Vehicle, setVehicle] = useState(localStorage.getItem("Vehicle") || "");
     const [profileImg, setProfileImg] = useState("");
     const navigate = useNavigate();
 
@@ -41,13 +41,13 @@ function EditProfile() {
             alert("Last name can't be empty");
             return;
         }
+        if (!Email.includes("@") || !Email.includes(".")) {
+            alert("Please enter a valid email");
+            return;
+        }
         const vehiclePattern = /^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/;
         if (!vehiclePattern.test(Vehicle)) {
             alert("Please enter a valid vehicle number (e.g., KA01AB1234)");
-            return;
-        }
-        if (!Email.includes("@") || !Email.includes(".")) {
-            alert("Please enter a valid email");
             return;
         }
 
@@ -60,9 +60,9 @@ function EditProfile() {
     }
 
     return (
-        <div className='min-h-screen flex justify-center items-center'>
-            <div className='bg-white px-12 rounded-xl w-200 mt-33 mb-13 py-12'>
-                <h1 className='font-bold flex justify-center mb-8' style={{ fontSize: '32px' }}>Edit Profile Information</h1>
+        <div className='min-h-screen flex justify-center items-center px-5'>
+            <div className='bg-white px-12 rounded-xl mt-28 md:mt-33 mb-13 py-12 w-full sm:w-96 md:w-200'>
+                <h1 className='font-bold flex justify-center mb-8 text-center' style={{ fontSize: '32px' }}>Edit Profile Information</h1>
 
                 <form>
                     <div className='mb-5'>
@@ -71,7 +71,7 @@ function EditProfile() {
                             placeholder='Enter your first name'
                             className='border border-gray-300 w-full p-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-100 focus:border-amber-900 focus:shadow-md'
                             value={FirstName}
-                            onChange={(e) => { setfirstName(e.target.value) }}
+                            onChange={(e) => { setFirstName(e.target.value) }}
                         />
                     </div>
                     <div className='mb-5'>
@@ -107,14 +107,14 @@ function EditProfile() {
                         <input type="file" onChange={handleImageUpload} className='border w-full p-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-100 focus:border-amber-900 focus:shadow-md' />
                     </div>
 
-                    <button type='button' className='border w-full bg-blue-950 text-white py-3 text-lg font-bold rounded-lg mb-2 hover:bg-black cursor-pointer' onClick={updateprofile}>Update Profile</button>
+                    <button type='button' className='border w-full bg-blue-950 text-white py-2 md:py-3 text-lg font-bold rounded-lg mb-3 hover:bg-black cursor-pointer' onClick={updateprofile}>Update Profile</button>
                 </form>
 
-                <p className='mb-5'>
+                <p className='mb-5 text-center md:text-left'>
                     <a href="/profile" className='underline'>Cancel / View My Profile</a>
                 </p>
             </div>
-        </div >
+        </div>
     )
 }
 

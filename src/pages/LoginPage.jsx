@@ -47,8 +47,8 @@ function LoginPage() {
     };
 
     return (
-        <div className='min-h-screen flex justify-center items-center'>
-            <div className='bg-white px-12 rounded-xl w-200 mt-12 py-12' style={{ height: "55vh" }}>
+        <div className='min-h-screen flex justify-center items-center px-5'>
+            <div className='bg-white px-12 rounded-xl w-full mt-8 md:mt-12 py-12 sm:w-96 md:w-200'>
                 <h1 className='font-bold flex justify-center mb-8' style={{ fontSize: '32px' }}>Login</h1>
 
                 <form>
