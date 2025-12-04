@@ -33,10 +33,8 @@ function UserDashboard() {
             <div className="text-center">
               <img
                 src={profileimage}
-                className="rounded-full w-32 h-32 md:w-48 md:h-48 border-4 border-white shadow-md mx-auto"
+                className="rounded-full w-16 h-16 md:w-30 md:h-30 border-4 border-white shadow-md mx-auto"
               />
-              <h2 className="mt-4 text-xl font-bold">{FirstName} {LastName}</h2>
-              <p className="opacity-90 mt-2">{MobileNo}</p>
             </div>
 
             <div className="text-center">
