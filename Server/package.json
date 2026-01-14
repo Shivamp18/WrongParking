@@ -8,7 +8,7 @@
     "migrate:down": "node -r dotenv/config ./node_modules/node-pg-migrate/bin/node-pg-migrate.js down",
     "migrate:create": "node -r dotenv/config ./node_modules/node-pg-migrate/bin/node-pg-migrate.js create",
     "start": "nodemon server.js",
-    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js"
+    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --runInBand"
   },
   "keywords": [],
   "author": "",

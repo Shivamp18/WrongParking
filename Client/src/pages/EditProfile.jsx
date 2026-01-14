@@ -7,7 +7,7 @@ import axios from 'axios';
 function EditProfile() {
 
     const [userData, setUserData] = useState(null);
-    const [profileImg, setProfileImg] = useState("src/assets/profile.jpeg");
+    const [profileImg, setProfileImg] = useState(null);
     const navigate = useNavigate();
 
     const handleImageUpload = (e) => {
@@ -22,7 +22,7 @@ function EditProfile() {
     }
 
     useEffect(() => {
-        axios.get("http://localhost:5000/api/user/dashboard", {
+        axios.get(`${import.meta.env.VITE_API_URL}/api/user/dashboard`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
             }
@@ -38,32 +38,41 @@ function EditProfile() {
 
     const updateprofile = async () => {
 
-        if (userData?.user?.first_name.trim() === "") {
+        const firstName = userData?.user?.first_name ?? "";
+        if (firstName.trim() === "") {
             alert("First name can't be empty");
             return;
         }
-        if (userData?.user?.last_name.trim() === "") {
+        const lastName = userData?.user?.last_name ?? "";
+        if (lastName.trim() === "") {
             alert("Last name can't be empty");
-            return;
-        }
-        if (!userData?.user?.email.includes("@") || !userData?.user?.email.includes(".")) {
-            alert("Please enter a valid email");
             return;
         }
         const vehiclePattern = /^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/;
         if (!vehiclePattern.test(userData?.user?.vehicle_number)) {
-            alert("Please enter a valid vehicle number (e.g.)");
+            alert("Please enter a valid vehicle number");
+            return;
+        }
+        const mobile = userData?.user?.mobile ?? "";
+        const mobilePattern = /^\+91\d{10}$/;
+        if (mobile !== "" && !mobilePattern.test(mobile)) {
+            alert("Please enter a valid mobile number");
+            return;
+        }
+        const email = userData?.user?.email ?? "";
+        if (!email.includes("@") || !email.includes(".")) {
+            alert("Please enter a valid email");
             return;
         }
 
         try {
                     const payload = {
-                        first_name: userData?.user?.first_name,
-                        last_name: userData?.user?.last_name,
-                        email: userData?.user?.email,
-                        vehicle_number: userData?.user?.vehicle_number,
-                        userId: userData?.user?.id,
-                        profile_image: profileImg
+                        first_name: userData?.user?.first_name ?? null,
+                        last_name: userData?.user?.last_name ?? null,
+                        email: userData?.user?.email ?? null,
+                        vehicle_number: userData?.user?.vehicle_number ?? null,
+                        profile_image: profileImg ?? null,
+                        userId: userData?.user?.id ?? null
                     };
         
                     const res = await updateUser(payload);
@@ -95,8 +104,8 @@ function EditProfile() {
                         <input type="text"
                             placeholder='Enter your first name'
                             className='border border-gray-300 w-full p-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-100 focus:border-amber-900 focus:shadow-md'
-                            value={userData?.user?.first_name}
-                            onChange={(e) => { setUserData({ ...userData, user: { ...userData?.user, first_name: e.target.value } }) }}
+                            value={userData?.user?.first_name || ""}
+                            onChange={(e) => { setUserData({ ...userData, user: { ...userData?.user, first_name: e.target.value } }) }} 
                         />
                     </div>
                     <div className='mb-5'>
@@ -104,17 +113,17 @@ function EditProfile() {
                         <input type="text"
                             placeholder='Enter your last name'
                             className='border w-full p-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-100 focus:border-amber-900 focus:shadow-md'
-                            value={userData?.user?.last_name}
-                            onChange={(e) => { setUserData({ ...userData, user: { ...userData?.user, last_name: e.target.value } }) }}
+                            value={userData?.user?.last_name || ""}
+                            onChange={(e) => { setUserData({ ...userData, user: { ...userData?.user, last_name: e.target.value } }) }} 
                         />
                     </div>
                     <div className='mb-5'>
                         <label className='block font-bold mb-1'>Email:</label>
                         <input type="text"
-                            placeholder='e.g., abcd@gmail.com'
+                            placeholder='abcd@gmail.com'
                             className='border w-full p-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-100 focus:border-amber-900 focus:shadow-md'
-                            value={userData?.user?.email}
-                            onChange={(e) => setUserData({ ...userData, user: { ...userData?.user, email: e.target.value } }) }
+                            value={userData?.user?.email || ""}
+                            onChange={(e) => setUserData({ ...userData, user: { ...userData?.user, email: e.target.value } }) } 
                         />
                     </div>
                     <div className='mb-5'>
@@ -122,8 +131,18 @@ function EditProfile() {
                         <input type="text"
                             placeholder='e.g., KA01AB1234'
                             className='border w-full p-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-100 focus:border-amber-900 focus:shadow-md'
-                            value={userData?.user?.vehicle_number}
+                            value={userData?.user?.vehicle_number || ""}
                             onChange={(e) => { setUserData({ ...userData, user: { ...userData?.user, vehicle_number: e.target.value } }) }}
+                        />
+                    </div>
+
+                    <div className='mb-5'>
+                        <label className='block font-bold mb-1'>Mobile number:</label>
+                        <input type="text"
+                            placeholder='+91XXXXXXXXXX'
+                            className='border w-full p-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-100 focus:border-amber-900 focus:shadow-md'
+                            value={userData?.user?.mobile || ""}
+                            onChange={(e) => { setUserData({ ...userData, user: { ...userData?.user, mobile: e.target.value } }) }}
                         />
                     </div>
 

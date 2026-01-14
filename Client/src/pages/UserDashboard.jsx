@@ -11,7 +11,7 @@ function UserDashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/user/dashboard", {
+    axios.get(`${import.meta.env.VITE_API_URL}/api/user/dashboard`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`
       }
