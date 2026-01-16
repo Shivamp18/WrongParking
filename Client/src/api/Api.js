@@ -6,7 +6,7 @@ const API = import.meta.env.VITE_API_URL;
 
 export const registerUser = async (data) => {
   try {
-    const res = await axios.post(`${API}/auth/register`, data);
+    const res = await axios.post(`${API}/api/auth/register`, data);
     return res;
   } catch (err) {
     console.error("Register API Error:", err);
