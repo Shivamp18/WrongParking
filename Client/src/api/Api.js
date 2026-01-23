@@ -18,7 +18,7 @@ export const registerUser = async (data) => {
 export const loginUser = async (data) => {
   try {
     console.log(data);
-    const res = await axios.post(`${API}/auth/login`, data);
+    const res = await axios.post(`${API}/api/auth/login`, data);
     return res;
   } catch (err) {
     console.error("Login API Error:", err);
@@ -28,7 +28,7 @@ export const loginUser = async (data) => {
 
 export const updateUser = async (data) => {
   try {
-    const res = await axios.put(`${API}/auth/update`, data);
+    const res = await axios.put(`${API}/api/auth/update`, data);
     return res;
   } catch (err) {
     console.error("Update API Error:", err);
