@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Link, useMatch } from "react-router-dom";
-import profileimage from 'Client\public\profile.jpeg';
+import profileimage from '\profile.jpeg';
 
 
 export default function Navbar() {
