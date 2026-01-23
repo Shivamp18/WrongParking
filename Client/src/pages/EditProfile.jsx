@@ -7,7 +7,7 @@ import axios from 'axios';
 function EditProfile() {
 
     const [userData, setUserData] = useState(null);
-    const [profileImg, setProfileImg] = useState(null);
+    const [profileImg, setProfileImg] = useState("Client\src\assets\profile.jpeg");
     const navigate = useNavigate();
 
     const handleImageUpload = (e) => {
