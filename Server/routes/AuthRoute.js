@@ -105,7 +105,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.post("/update", async (req, res) => {
+router.put("/update", async (req, res) => {
   try {
     console.log("Update request body:", req.body);
     const { first_name, last_name, email, vehicle_number, userId, profile_image } = req.body;

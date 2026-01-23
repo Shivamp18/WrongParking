@@ -59,7 +59,7 @@ function UserDashboard() {
 
             <div className="text-center">
               <img
-                src={"src/assets/Black-Dot-PNG-Pic.png"}
+                src={"/Black-Dot-PNG-Pic.png"}
                 className="w-32 h-32 md:w-48 md:h-48 border-4 border-white shadow-md mx-auto"
               />
               <h3 className="text-lg font-bold mt-4">Your Vehicle QR Code</h3>
