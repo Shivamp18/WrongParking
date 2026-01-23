@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Link, useMatch } from "react-router-dom";
-import profileimage from '../assets/profile.jpeg';
+import profileimage from '/EasyParking/Client/public/profile.jpeg';
 
 
 export default function Navbar() {
