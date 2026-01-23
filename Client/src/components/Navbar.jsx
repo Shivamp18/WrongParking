@@ -1,7 +1,6 @@
 
 import { useState } from "react";
 import { Link, useMatch } from "react-router-dom";
-import profileimage from '\profile.jpeg';
 
 
 export default function Navbar() {
@@ -23,7 +22,7 @@ export default function Navbar() {
 
             <li className="relative group cursor-pointer">
               <img
-                src={profileimage}
+                src={"/profile.jpeg"}
                 className="rounded-full w-10 h-10 border-2 border-white shadow-md"
                 alt="Profile"
               />
