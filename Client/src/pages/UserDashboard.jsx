@@ -30,17 +30,17 @@ function UserDashboard() {
     <div className="min-h-screen flex justify-center items-center px-5 py-10">
       <div className="bg-white rounded-xl w-full max-w-6xl p-6 md:p-12 mt-16">
 
-<button
-  aria-label="edit-profile"
-  onClick={() => navigate("/edit-profile")}
-  className='ml-250 mb-5 md:mb-10'
->
-   <FiEdit className="text-gray-500 cursor-pointer text-2xl md:text-4xl" />
+        <button
+          aria-label="edit-profile"
+          onClick={() => navigate("/edit-profile")}
+          className='ml-250 mb-5 md:mb-10'
+        >
+          <FiEdit className="text-gray-500 cursor-pointer text-2xl md:text-4xl" />
 
 
-</button>
+        </button>
 
-      
+
 
         <h1 className="font-bold text-center mb-10 md:mb-20 text-3xl md:text-4xl mt-5 md:mt-0">
           My Profile & QR Code
@@ -52,7 +52,8 @@ function UserDashboard() {
           <div className="flex flex-col items-center gap-10">
             <div className="text-center">
               <img
-                src={userData?.user?.profile_image}
+                src={userData?.user?.profile_image ? `${import.meta.env.VITE_API_URL}${userData.user.profile_image}`
+                  : "/profile.jpeg"}
                 className="rounded-full w-16 h-16 md:w-30 md:h-30 border-4 border-white shadow-md mx-auto"
               />
             </div>
