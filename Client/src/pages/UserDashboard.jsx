@@ -51,9 +51,22 @@ function UserDashboard() {
 
           <div className="flex flex-col items-center gap-10">
             <div className="text-center">
+
+              const DEFAULT_IMAGE = "/default-profile.png";
+
+const profileImage =
+  userData?.user?.profile_image &&
+  userData.user.profile_image !== "null" &&
+  userData.user.profile_image.trim() !== ""
+    ? `${import.meta.env.VITE_API_URL}${userData.user.profile_image}`
+    : DEFAULT_IMAGE;
+              
               <img
-                src={userData?.user?.profile_image?userData?.user?.profile_image:"/default-profile.png"}
+                src={profileImage}
                 className="rounded-full w-16 h-16 md:w-30 md:h-30 border-4 border-white shadow-md mx-auto"
+                onError={(e) => {
+    e.currentTarget.src = DEFAULT_IMAGE;
+  }}
               />
             </div>
 
