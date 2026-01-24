@@ -52,15 +52,12 @@ function UserDashboard() {
           <div className="flex flex-col items-center gap-10">
             <div className="text-center">
 
-              const DEFAULT_IMAGE = "/default-profile.png";
-
+           
 
               
               <img
                 src={userData?.user?.profile_image}
                 className="rounded-full w-16 h-16 md:w-30 md:h-30 border-4 border-white shadow-md mx-auto"
-               
-  }}
               />
             </div>
 
